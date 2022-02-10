@@ -1,0 +1,61 @@
+/* ABOUT US SECTION */
+
+.main-about {
+    grid-area: main-about;
+}
+
+.about-website {
+    background-color: #fff;
+    padding: 10px;
+}
+
+.main-about h1,
+.the-team h1 {
+    font-style: 2em;
+    padding: 5px;
+    color: #ffee58;
+}
+
+.about-p {
+    color: #424242;
+    text-align: justify;
+}
+
+.about-website h1 {
+    color: #424242;
+    text-align: center;
+}
+
+
+/* TEAM SECTION */
+
+.the-team {
+    background-color: #424242;
+    padding: 5px;
+}
+
+.the-team h1 {
+    text-align: center;
+}
+
+.image-box h6 {
+    color: #fff;
+}
+
+.team-img img {
+    height: 100px;
+    width: 100px;
+}
+
+.card-body h5 {
+    font-size: 1.2em;
+    letter-spacing: 2px;
+}
+
+.card-body h6 {
+    font-size: 0.8em;
+}
+
+.card-body p {
+    font-size: 0.8em;
+}

@@ -1,0 +1,52 @@
+.p-chart,
+.p-calculator {
+    font-size: 18px;
+}
+
+
+/* MAIN CONTENT */
+
+.h4-crypto {
+    margin-bottom: 0px;
+    padding-bottom: 2px;
+    font-size: 2.1em;
+}
+
+.row.search-select {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+
+/* CALCULATOR SECTION */
+
+.calculator-div {
+    padding: 2px 30px;
+    background-color: #fff;
+}
+
+.calculator-layout {
+    border: 1px ridge #fdd835;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.h4-chart,
+.h4-calculator {
+    padding: 10px;
+    color: #000;
+    letter-spacing: 2px;
+    font-size: 1.5em;
+    background-color: #fdd835;
+    text-align: center;
+}
+
+
+/* webkit to remove scroll on input:number */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

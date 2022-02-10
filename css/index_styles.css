@@ -1,0 +1,112 @@
+/* ANIMATION */
+
+.animate-text {
+    position: relative;
+    animation: 2.5s mymove ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes mymove {
+    0% {
+        top: -500px;
+        color: #424242;
+    }
+    20% {
+        top: 45px;
+        color: #fff;
+    }
+    40% {
+        top: 10px;
+    }
+    100% {
+        top: 25px;
+        color: #fff;
+    }
+}
+
+
+/* CARD FLIP */
+
+.box-area {
+    padding: 50px 0;
+}
+
+.box1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.single-box {
+    background-color: transparent;
+    width: 250px;
+    height: 250px;
+    margin: 0;
+}
+
+.box-content {
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: all 1s ease-in-out;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.single-box:hover .box-content {
+    transform: rotateY(180deg);
+}
+
+.front,
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.front {
+    background-color: #fdd835;
+    color: #000;
+}
+
+.back {
+    background-color: #e0e0e0;
+    color: #000;
+    padding: 40px 10px;
+    transform: rotateY(180deg);
+}
+
+.back p {
+    font-size: 12px;
+}
+
+.learn-image img {
+    width: 60px;
+}
+
+
+/* END OF ANIMATION */
+
+
+/* LIVE TICKER */
+
+.ticker {
+    padding-top: 0px;
+    position: sticky;
+    width: 100vw;
+}
+
+
+/* MODAL CSS */
+
+.modal-body p {
+    font-size: 13px;
+    padding-left: 2px;
+}
+
+.modal-body label {
+    font-size: 13px;
+    padding-left: 2px;
+}
