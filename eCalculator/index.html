@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- fontawesome -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+
+</head>
+
+
+<title>Simple Calculator</title>
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .container {
+        border: 3px double #333;
+        width: 400px;
+        height: 400px;
+        padding: 5px;
+        margin-top: 100px;
+        background-color: #1c313a;
+        border-radius: 5px;
+    }
+    
+    .calculator-layout {
+        background: lightblue;
+        height: 100%;
+        width: 100%;
+        padding: 2px;
+        border-radius: 5px;
+    }
+    
+    .display-div {
+        border: #333 0px solid;
+        border-radius: 20px;
+        padding: 5px;
+    }
+    
+    .displayTop,
+    .displayBottom {
+        padding: 6px 0px;
+        width: 100%;
+        margin: 0px;
+        background-color: #1c313a;
+        text-align: right;
+        color: #1c313a;
+    }
+    
+    .displayTop {
+        font-size: 18px;
+        height: 18px;
+        color: #333;
+    }
+    
+    .displayBottom {
+        font-size: 25px;
+        height: 30px;
+    }
+    
+    .button-div {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    
+    input[type=button] {
+        background-color: #718792;
+        color: aliceblue;
+    }
+    
+    input[type=button]:nth-child(2),
+    input[type=button]:nth-child(3),
+    input[type=button]:nth-child(4),
+    input[type=button]:nth-child(8),
+    input[type=button]:nth-child(12),
+    input[type=button]:nth-child(16) {
+        background-color: #1c313a;
+    }
+    
+    input[type=button]:nth-child(19) {
+        background-color: #1c313a;
+        width: 175px;
+    }
+    
+    .btn-number,
+    .btn-operator {
+        width: 80px;
+        height: 50px;
+        border-radius: 5px;
+        margin: 5px;
+        font-size: 22px;
+    }
+    
+    button {
+        background-color: #ff6c40;
+        font-size: 10px;
+        color: aliceblue;
+    }
+    
+    .title {
+        font-weight: bold;
+        font-style: italic;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="calculator-layout">
+            <div class="title">E-Calculator</div>
+            <div class="display-div">
+                <div class="displayTop" type="text" name="" id="displayTop"></div>
+                <div class="displayBottom" type="text" name="" id="displayBottom"></div>
+            </div>
+            <div class="button-div">
+                <!-- <input type="button" value="&#9212" id="btn-power" class="btn-operator">  -->
+                <button id="btn-power" class="btn-operator btn-power"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                    <path d="M7.5 1v7h1V1h-1z"/>
+                    <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+                  </svg></button>
+                <input type="button" value="c" id="btn-clear" class="btn-operator">
+                <input type="button" value="ce" id="btn-del" class="btn-operator">
+                <input type="button" value="/" class="btn-operator" id="/">
+                <input type="button" value="7" class="btn-number" id="7">
+                <input type="button" value="8" class="btn-number" id="8">
+                <input type="button" value="9" class="btn-number" id="9">
+                <input type="button" value="x" class="btn-operator" id="*">
+                <input type="button" value="4" class="btn-number" id="4">
+                <input type="button" value="5" class="btn-number" id="5">
+                <input type="button" value="6" class="btn-number" id="6">
+                <input type="button" value="-" class="btn-operator" id="-">
+                <input type="button" value="1" class="btn-number" id="1">
+                <input type="button" value="2" class="btn-number" id="2">
+                <input type="button" value="3" class="btn-number" id="3">
+                <input type="button" value="+" class="btn-operator" id="+">
+                <input type="button" value="0" class="btn-number" id="0">
+                <input type="button" value="." class="btn-number" id=".">
+                <!-- <input type="button" value="=" class="btn-operator" id="="> -->
+                <input type="button" value="=" class="btn-operator" id="=">
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        // upper div input get and set
+        function getDisplayTop() {
+            return document.getElementById('displayTop').innerText;
+        }
+
+        function printDisplayTop(num) {
+            document.getElementById('displayTop').innerText = num;
+        }
+        // bottom div input get and set
+        function getDisplayBottom() {
+            return document.getElementById('displayBottom').innerText;
+        }
+
+        function printDisplayBottom(num) {
+            document.getElementById('displayBottom').innerText = num;
+        }
+        //computation
+        function compute() {
+            let result = 0;
+            let firstNum = getDisplayTop();
+            firstNum = firstNum.split('');
+            operator = firstNum.pop();
+            firstNum = firstNum.join('');
+            firstNum = parseFloat(getDisplayTop());
+            let secondNum = parseFloat(getDisplayBottom());
+
+            if (isNaN(firstNum) || isNaN(secondNum)) {
+                return isNaN(firstNum) ? secondNum : firstNum;
+            }
+
+            if (operator == '+') {
+                result = firstNum + secondNum;
+            } else if (operator == '-') {
+                result = firstNum - secondNum;
+            } else if (operator == '*') {
+                result = firstNum * secondNum;
+            } else if (operator == '/') {
+                result = firstNum / secondNum;
+            }
+            return result;
+
+        }
+        //power button
+        let deviceOff = true;
+
+
+        //number buttons
+        let btnNumbers = document.getElementsByClassName('btn-number');
+        for (let i = 0; i < btnNumbers.length; i++) {
+            btnNumbers[i].addEventListener('click', function() {
+                let output = getDisplayBottom();
+                if (output != NaN) { // if out is a number
+
+                    if (output !== '0') {
+                        output += this.id;
+                        printDisplayBottom(output);
+                    } else {
+                        output = output.substring(0, output.length - 1) + this.id;
+                        printDisplayBottom(output);
+                    }
+                }
+            })
+        }
+
+
+        //operators
+        let btnOperator = document.getElementsByClassName('btn-operator');
+        for (let i = 0; i < btnOperator.length; i++) {
+            btnOperator[i].addEventListener('click', function() {
+                // power button
+                if (this.id == 'btn-power') {
+                    if (deviceOff) {
+                        document.querySelector('#displayTop').style.backgroundColor = "whitesmoke";
+                        document.querySelector('#displayBottom').style.backgroundColor = "whitesmoke";
+                        printDisplayTop('');
+                        printDisplayBottom('');
+                        document.getElementById('btn-power').style.color = 'white';
+                        deviceOff = false;
+                    } else {
+                        document.querySelector('#displayTop').style.backgroundColor = "#1c313a";
+                        document.querySelector('#displayBottom').style.backgroundColor = "#1c313a";
+                        printDisplayTop('');
+                        printDisplayBottom('');
+                        document.getElementById('btn-power').style.color = '#1c313a';
+                        deviceOff = true;
+
+                    }
+
+                    // clear button
+                } else if (this.id == 'btn-clear') {
+                    printDisplayTop('');
+                    printDisplayBottom('');
+
+                    // delete button
+                } else if (this.id == 'btn-del') {
+                    let output = getDisplayBottom().toString();
+
+                    if (output) {
+                        output = output.substr(0, output.length - 1);
+                        printDisplayBottom(output);
+                    }
+                    // equal button
+                } else {
+
+                    let output = getDisplayBottom();
+                    let topOutput = getDisplayTop();
+
+                    //replace the operator
+                    if (output == '' && topOutput != '') {
+                        if (isNaN(topOutput[topOutput.length - 1])) {
+                            topOutput = topOutput.substring(0, topOutput.length - 1);
+                        }
+                    }
+
+                    // dot replace to zero
+                    if (output == '.') {
+                        printDisplayBottom('0.');
+
+
+                    } else {
+
+                        if (output != '' || topOutput != '') {
+
+                            topOutput = topOutput + output;
+                            if (topOutput == '') {
+                                topOutput = 0;
+                            }
+
+                            if (this.id == '=') {
+
+                                let result = compute();
+
+                                printDisplayBottom(result);
+                                printDisplayTop('');
+                            } else {
+                                topOutput = topOutput + this.id;
+                                printDisplayTop(topOutput)
+                                printDisplayBottom('');
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
